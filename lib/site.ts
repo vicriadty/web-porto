@@ -8,6 +8,6 @@ export const site = {
   githubLabel: "github.com/vicriadty",
   linkedin: "https://www.linkedin.com/in/vicriadty/",
   linkedinLabel: "linkedin.com/in/vicriadty",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/Vicri_Aditiya_Resume.pdf",
   location: "Indonesia",
 } as const;
