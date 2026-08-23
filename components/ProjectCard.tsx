@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { Project } from "@/lib/projects";
 
 export function ProjectCard({
@@ -8,10 +8,12 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
+  const reduce = useReducedMotion();
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      whileInView={reduce ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
       className="flex h-full flex-col rounded-2xl border border-zinc-900 bg-surface p-6"
