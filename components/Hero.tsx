@@ -1,15 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { site } from "@/lib/site";
 
 export function Hero() {
+  const reduce = useReducedMotion();
+
   return (
     <section id="home" className="flex min-h-[88vh] items-center">
       <div className="mx-auto w-full max-w-5xl px-6 py-24">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between"
@@ -42,8 +44,8 @@ export function Hero() {
           </div>
 
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={reduce ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
             className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full border border-zinc-800"
           >

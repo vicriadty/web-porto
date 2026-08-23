@@ -5,7 +5,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-zinc-900 py-8">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-sm text-zinc-500 sm:flex-row">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-sm text-zinc-400 sm:flex-row">
         <p>
           &copy; {year} {site.name}. All rights reserved.
         </p>

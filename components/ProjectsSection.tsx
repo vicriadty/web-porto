@@ -19,9 +19,7 @@ export function ProjectsSection() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {projects.map((project, index) => (
-            <FadeIn key={project.title}>
-              <ProjectCard project={project} index={index} />
-            </FadeIn>
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>
