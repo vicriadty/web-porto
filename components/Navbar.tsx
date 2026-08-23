@@ -35,10 +35,11 @@ export function Navbar() {
           <li>
             <a
               href={site.resumeUrl}
-              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-200 transition-colors hover:border-cyan-400 hover:text-cyan-300"
             >
-              Resume
+              CV
             </a>
           </li>
         </ul>

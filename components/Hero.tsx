@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "motion/react";
 import { site } from "@/lib/site";
 
@@ -44,10 +45,16 @@ export function Hero() {
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            aria-hidden="true"
-            className="flex h-40 w-40 items-center justify-center rounded-full border border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-950 text-5xl font-bold text-zinc-200"
+            className="relative h-40 w-40 shrink-0 overflow-hidden rounded-full border border-zinc-800"
           >
-            {site.avatar}
+            <Image
+              src="/profile-picture.png"
+              alt={`Portrait of ${site.name}`}
+              fill
+              priority
+              sizes="160px"
+              className="object-cover"
+            />
           </motion.div>
         </motion.div>
       </div>

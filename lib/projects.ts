@@ -13,7 +13,7 @@ export const projects: Project[] = [
       "Full-stack storefront with cart, checkout, and an admin dashboard for managing inventory.",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com/vicriaditiya/nordic-store",
+    githubUrl: "https://github.com/vicriadty/nordic-store",
   },
   {
     title: "TaskFlow API",
@@ -21,7 +21,7 @@ export const projects: Project[] = [
       "REST API for a team task manager — auth, roles, realtime notifications, and tests.",
     tags: ["Node.js", "Express", "PostgreSQL", "Redis", "Jest"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com/vicriaditiya/taskflow-api",
+    githubUrl: "https://github.com/vicriadty/taskflow-api",
   },
   {
     title: "Insightboard",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
       "Analytics dashboard that turns raw events into live, filterable charts.",
     tags: ["React", "TypeScript", "Chart.js", "WebSocket"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com/vicriaditiya/insightboard",
+    githubUrl: "https://github.com/vicriadty/insightboard",
   },
   {
     title: "Landihost",
@@ -37,6 +37,6 @@ export const projects: Project[] = [
       "Vite-powered landing page builder with drag-and-drop sections and theming.",
     tags: ["React", "Vite", "Tailwind CSS", "Zustand"],
     liveUrl: "https://example.com",
-    githubUrl: "https://github.com/vicriaditiya/landihost",
+    githubUrl: "https://github.com/vicriadty/landihost",
   },
 ];
