@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { site } from "@/lib/site";
 
-const resendKey = process.env.RESEND_API_KEY;
-const resend = resendKey ? new Resend(resendKey) : null;
-
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  return key ? new Resend(key) : null;
+}
 
 export async function POST(request: Request) {
   try {
@@ -36,14 +38,24 @@ export async function POST(request: Request) {
     if (!EMAIL_RE.test(email)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
-    if (!resend) {
+    if (!process.env.RESEND_API_KEY) {
+      console.error(
+        "[contact] RESEND_API_KEY is not set (env:",
+        {
+          RESEND_API_KEY: process.env.RESEND_API_KEY ? "set" : "missing",
+          EMAIL_FROM: process.env.EMAIL_FROM ? "set" : "missing",
+        },
+        ")",
+      );
       return NextResponse.json(
-        { error: "Email is not configured" },
+        { error: "Email is not configured (missing RESEND_API_KEY)" },
         { status: 500 },
       );
     }
 
-    const from = process.env.EMAIL_FROM || "Vicri Aditiya <onboarding@resend.dev>";
+    const resend = getResend();
+    const from =
+      process.env.EMAIL_FROM || "Vicri Aditiya <onboarding@resend.dev>";
     await resend.emails.send({
       from,
       to: site.email,
