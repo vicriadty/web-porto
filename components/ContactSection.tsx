@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import Image from "next/image";
 import { FadeIn } from "./FadeIn";
 import { site } from "@/lib/site";
 
@@ -153,8 +154,17 @@ export function ContactSection() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-zinc-300 transition-colors hover:text-cyan-300"
+                  className="group inline-flex items-center gap-2.5 text-zinc-300 transition-colors hover:text-cyan-300"
                 >
+                  <Image
+                    src="https://cdn.simpleicons.org/gmail/ffffff"
+                    alt=""
+                    aria-hidden
+                    width={20}
+                    height={20}
+                    unoptimized
+                    className="transition group-hover:scale-110"
+                  />
                   {site.email}
                 </a>
               </li>
@@ -164,8 +174,17 @@ export function ContactSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`GitHub: ${site.githubLabel}`}
-                  className="text-zinc-300 transition-colors hover:text-cyan-300"
+                  className="group inline-flex items-center gap-2.5 text-zinc-300 transition-colors hover:text-cyan-300"
                 >
+                  <Image
+                    src="https://cdn.simpleicons.org/github/ffffff"
+                    alt=""
+                    aria-hidden
+                    width={20}
+                    height={20}
+                    unoptimized
+                    className="transition group-hover:scale-110"
+                  />
                   {site.githubLabel}
                 </a>
               </li>
@@ -175,8 +194,17 @@ export function ContactSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`LinkedIn: ${site.linkedinLabel}`}
-                  className="text-zinc-300 transition-colors hover:text-cyan-300"
+                  className="group inline-flex items-center gap-2.5 text-zinc-300 transition-colors hover:text-cyan-300"
                 >
+                  <Image
+                    src="https://cdn.simpleicons.org/linkedin/0A66C2"
+                    alt=""
+                    aria-hidden
+                    width={20}
+                    height={20}
+                    unoptimized
+                    className="transition group-hover:scale-110"
+                  />
                   {site.linkedinLabel}
                 </a>
               </li>

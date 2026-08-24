@@ -1,28 +1,53 @@
+import Image from "next/image";
 import { FadeIn } from "./FadeIn";
 
-const groups = [
+type Skill = { name: string; icon: string; invert?: boolean };
+type Group = { title: string; skills: Skill[] };
+
+const devicon = (name: string) =>
+  `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`;
+
+const groups: Group[] = [
   {
     title: "Frontend",
     skills: [
-      "HTML / CSS",
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Tailwind CSS",
+      { name: "HTML5", icon: "html5" },
+      { name: "CSS3", icon: "css3" },
+      { name: "JavaScript", icon: "javascript" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextjs", invert: true },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
     ],
   },
   {
     title: "Backend",
-    skills: ["Node.js", "Express", "REST APIs", "Prisma", "GraphQL"],
+    skills: [
+      { name: "Node.js", icon: "nodejs" },
+      { name: "Express", icon: "express", invert: true },
+      { name: "PHP", icon: "php" },
+      { name: "Laravel", icon: "laravel" },
+      { name: "Prisma", icon: "prisma" },
+      { name: "GraphQL", icon: "graphql" },
+    ],
   },
   {
     title: "Database",
-    skills: ["PostgreSQL", "MongoDB", "Redis"],
+    skills: [
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "MongoDB", icon: "mongodb" },
+      { name: "Redis", icon: "redis" },
+    ],
   },
   {
     title: "DevOps & Tools",
-    skills: ["Git", "GitHub", "Docker", "CI/CD", "Vercel", "Linux"],
+    skills: [
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github", invert: true },
+      { name: "Docker", icon: "docker" },
+      { name: "Vercel", icon: "vercel", invert: true },
+      { name: "Linux", icon: "linux" },
+    ],
   },
 ];
 
@@ -49,10 +74,19 @@ export function SkillsSection() {
                 <ul className="mt-4 flex flex-wrap gap-2">
                   {group.skills.map((skill) => (
                     <li
-                      key={skill}
-                      className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300"
+                      key={skill.name}
+                      className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300 transition duration-200 hover:scale-105 hover:border-cyan-400 hover:bg-zinc-800"
                     >
-                      {skill}
+                      <Image
+                        src={devicon(skill.icon)}
+                        alt=""
+                        aria-hidden
+                        width={18}
+                        height={18}
+                        unoptimized
+                        className={skill.invert ? "invert" : undefined}
+                      />
+                      <span>{skill.name}</span>
                     </li>
                   ))}
                 </ul>
