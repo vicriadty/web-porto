@@ -1,6 +1,6 @@
 # Vicri Aditiya — Portfolio
 
-Personal portfolio website built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **motion (Framer Motion)**. Dark theme, scroll animations, splash screen on first visit, contact form, MDX blog, and Vercel Analytics.
+Personal portfolio website built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **motion (Framer Motion)**. Dark theme, scroll animations, splash screen on first visit, and a working contact form.
 
 ## Stack
 
@@ -9,7 +9,6 @@ Personal portfolio website built with **Next.js (App Router)**, **TypeScript**, 
 - **Styling:** Tailwind CSS 4
 - **Animation:** motion (Framer Motion)
 - **Email:** Resend
-- **Blog:** MDX (`next-mdx-remote` + `gray-matter`)
 - **Analytics:** Vercel Analytics
 - **Deploy:** Vercel
 
@@ -31,16 +30,17 @@ Open [http://localhost:3000](http://localhost:3000).
 | `npm run start`    | Start production server     |
 | `npm run lint`     | Run ESLint                  |
 
-## Pages
+## Single-page sections
 
-| Route           | Description                                        |
-| --------------- | -------------------------------------------------- |
-| `/`             | Homepage (Hero, Projects, About, Skills, Contact)  |
-| `/projects`     | All projects                                       |
-| `/about`        | About bio                                          |
-| `/contact`      | Contact form + social links                        |
-| `/blog`         | Blog list                                          |
-| `/blog/[slug]`  | Individual blog post (SSG)                         |
+The site is a single page divided into sections (navigated from the sticky navbar):
+
+| Section  | Anchor    |
+| -------- | --------- |
+| Home     | `#home`   |
+| Projects | `#projects`|
+| About    | `#about`  |
+| Skills   | `#skills` |
+| Contact  | `#contact`|
 
 ## Configuration
 
@@ -58,8 +58,6 @@ honeypot field for bots, and sends to the site email via Resend.
 
 - **Projects:** edit `lib/projects.ts`
 - **Personal info / socials:** edit `lib/site.ts`
-- **Blog posts:** add `.mdx` files in `content/` (with `title`, `date`, and
-  optional `excerpt` frontmatter)
 
 ## Deploy
 

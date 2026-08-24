@@ -1,18 +1,12 @@
-import Link from "next/link";
-import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
-const pageLinks = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-  { href: "/blog", label: "Blog" },
+const links = [
+  { href: "#home", label: "Home" },
+  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contact", label: "Contact" },
 ];
-
-const navClass = cn(
-  "text-sm text-zinc-400 transition-colors hover:text-zinc-100",
-);
 
 export function Navbar() {
   return (
@@ -21,18 +15,21 @@ export function Navbar() {
         aria-label="Main"
         className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6"
       >
-        <Link
-          href="/"
+        <a
+          href="#home"
           className="text-base font-semibold tracking-tight text-zinc-100"
         >
           {site.name}
-        </Link>
+        </a>
         <ul className="hidden items-center gap-6 md:flex">
-          {pageLinks.map((link) => (
+          {links.map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className={navClass}>
+              <a
+                href={link.href}
+                className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
+              >
                 {link.label}
-              </Link>
+              </a>
             </li>
           ))}
           <li>
