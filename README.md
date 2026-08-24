@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vicri Aditiya — Portfolio
+
+Personal portfolio website built with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, and **motion (Framer Motion)**. Dark theme, scroll animations, splash screen on first visit, contact form, MDX blog, and Vercel Analytics.
+
+## Stack
+
+- **Framework:** Next.js 16 (App Router), React 19
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **Animation:** motion (Framer Motion)
+- **Email:** Resend
+- **Blog:** MDX (`next-mdx-remote` + `gray-matter`)
+- **Analytics:** Vercel Analytics
+- **Deploy:** Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Script             | Description                 |
+| ------------------ | --------------------------- |
+| `npm run dev`      | Development server (Turbopack) |
+| `npm run build`    | Production build            |
+| `npm run start`    | Start production server     |
+| `npm run lint`     | Run ESLint                  |
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+| Route           | Description                                        |
+| --------------- | -------------------------------------------------- |
+| `/`             | Homepage (Hero, Projects, About, Skills, Contact)  |
+| `/projects`     | All projects                                       |
+| `/about`        | About bio                                          |
+| `/contact`      | Contact form + social links                        |
+| `/blog`         | Blog list                                          |
+| `/blog/[slug]`  | Individual blog post (SSG)                         |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Configuration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Copy `.env.example` to `.env.local` and fill in:
 
-## Deploy on Vercel
+| Variable        | Purpose                                  |
+| --------------- | ---------------------------------------- |
+| `RESEND_API_KEY`| Resend API key for the contact form      |
+| `EMAIL_FROM`    | Verified sender address (`Name <email>`) |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The contact form POSTs to `/api/contact`. It validates input, includes a
+honeypot field for bots, and sends to the site email via Resend.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Content
+
+- **Projects:** edit `lib/projects.ts`
+- **Personal info / socials:** edit `lib/site.ts`
+- **Blog posts:** add `.mdx` files in `content/` (with `title`, `date`, and
+  optional `excerpt` frontmatter)
+
+## Deploy
+
+Deploy on [Vercel](https://vercel.com). Set `RESEND_API_KEY` and `EMAIL_FROM`
+in the environment (Preview + Production) and re-deploy after changes.
+
+## Accessibility
+
+- `prefers-reduced-motion` support (animations disabled)
+- Skip-to-content link and focus-visible styles
+- Semantic headings and landmark roles
+- Contrast-tuned for WCAG AA

@@ -38,7 +38,8 @@ export async function POST(request: Request) {
     if (!EMAIL_RE.test(email)) {
       return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
-    if (!process.env.RESEND_API_KEY) {
+    const resend = getResend();
+    if (!resend) {
       console.error(
         "[contact] RESEND_API_KEY is not set (env:",
         {
@@ -53,7 +54,6 @@ export async function POST(request: Request) {
       );
     }
 
-    const resend = getResend();
     const from =
       process.env.EMAIL_FROM || "Vicri Aditiya <onboarding@resend.dev>";
     await resend.emails.send({

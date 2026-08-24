@@ -1,13 +1,18 @@
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
-const links = [
-  { href: "/#home", label: "Home" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#about", label: "About" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#contact", label: "Contact" },
+const pageLinks = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
 ];
+
+const navClass = cn(
+  "text-sm text-zinc-400 transition-colors hover:text-zinc-100",
+);
 
 export function Navbar() {
   return (
@@ -23,24 +28,13 @@ export function Navbar() {
           {site.name}
         </Link>
         <ul className="hidden items-center gap-6 md:flex">
-          {links.map((link) => (
+          {pageLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
-              >
+              <Link href={link.href} className={navClass}>
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
-          <li>
-            <Link
-              href="/blog"
-              className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
-            >
-              Blog
-            </Link>
-          </li>
           <li>
             <a
               href={site.resumeUrl}
