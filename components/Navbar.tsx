@@ -1,12 +1,11 @@
-import Link from "next/link";
 import { site } from "@/lib/site";
 
 const links = [
-  { href: "/#home", label: "Home" },
-  { href: "/#projects", label: "Projects" },
-  { href: "/#about", label: "About" },
-  { href: "/#skills", label: "Skills" },
-  { href: "/#contact", label: "Contact" },
+  { href: "#home", label: "Home" },
+  { href: "#projects", label: "Projects" },
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export function Navbar() {
@@ -16,12 +15,12 @@ export function Navbar() {
         aria-label="Main"
         className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6"
       >
-        <Link
-          href="/"
+        <a
+          href="#home"
           className="text-base font-semibold tracking-tight text-zinc-100"
         >
           {site.name}
-        </Link>
+        </a>
         <ul className="hidden items-center gap-6 md:flex">
           {links.map((link) => (
             <li key={link.href}>
@@ -33,14 +32,6 @@ export function Navbar() {
               </a>
             </li>
           ))}
-          <li>
-            <Link
-              href="/blog"
-              className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
-            >
-              Blog
-            </Link>
-          </li>
           <li>
             <a
               href={site.resumeUrl}

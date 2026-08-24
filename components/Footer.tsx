@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { site } from "@/lib/site";
 
 export function Footer() {
@@ -11,9 +10,6 @@ export function Footer() {
           &copy; {year} {site.name}. All rights reserved.
         </p>
         <div className="flex items-center gap-6">
-          <Link href="/blog" className="transition-colors hover:text-zinc-200">
-            Blog
-          </Link>
           <a
             href={site.github}
             target="_blank"
