@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { site } from "@/lib/site";
 
 export function Hero() {
-  const reduce = useReducedMotion();
+  const reduce = false; // TEMP: preview animations
 
   return (
     <section id="home" className="flex min-h-[88vh] items-center">

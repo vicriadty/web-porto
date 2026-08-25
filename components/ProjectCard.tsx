@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { Project } from "@/lib/projects";
 
 export function ProjectCard({
@@ -10,7 +10,7 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = false; // TEMP: preview scroll animations
 
   return (
     <motion.article
