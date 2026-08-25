@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 import { site } from "@/lib/site";
 
 export function SplashScreen({ onComplete }: { onComplete: () => void }) {
   const [isAnimating, setIsAnimating] = useState(true);
-  const reduce = useReducedMotion();
+  const reduce = false; // TEMP: preview animations
 
   useEffect(() => {
     const timer = setTimeout(() => {

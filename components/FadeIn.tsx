@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 
 export function FadeIn({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const reduce = useReducedMotion();
+  const reduce = false; // TEMP: preview scroll animations
 
   return (
     <motion.div
