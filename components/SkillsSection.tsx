@@ -1,96 +1,85 @@
-import Image from "next/image";
 import { FadeIn } from "./FadeIn";
 
-type Skill = { name: string; icon: string; invert?: boolean };
-type Group = { title: string; skills: Skill[] };
-
-const devicon = (name: string) =>
-  `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${name}/${name}-original.svg`;
+type Group = { title: string; description: string; skills: string[] };
 
 const groups: Group[] = [
   {
     title: "Frontend",
+    description: "Responsive interfaces with clear states, robust semantics, and thoughtful interaction.",
     skills: [
-      { name: "HTML5", icon: "html5" },
-      { name: "CSS3", icon: "css3" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "React", icon: "react" },
-      { name: "Next.js", icon: "nextjs", invert: true },
-      { name: "Tailwind CSS", icon: "tailwindcss" },
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Tailwind CSS",
     ],
   },
   {
     title: "Backend",
+    description: "Maintainable APIs and application logic designed around real product workflows.",
     skills: [
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Express", icon: "express", invert: true },
-      { name: "PHP", icon: "php" },
-      { name: "Laravel", icon: "laravel" },
-      { name: "Prisma", icon: "prisma" },
-      { name: "GraphQL", icon: "graphql" },
+      "Node.js",
+      "Express",
+      "PHP",
+      "Laravel",
+      "Prisma",
     ],
   },
   {
     title: "Database",
-    skills: [
-      { name: "PostgreSQL", icon: "postgresql" },
-      { name: "MongoDB", icon: "mongodb" },
-      { name: "Redis", icon: "redis" },
-    ],
+    description: "Practical data models, reliable persistence, and performance-aware querying.",
+    skills: ["PostgreSQL", "MongoDB", "Redis"],
   },
   {
     title: "DevOps & Tools",
-    skills: [
-      { name: "Git", icon: "git" },
-      { name: "GitHub", icon: "github", invert: true },
-      { name: "Docker", icon: "docker" },
-      { name: "Vercel", icon: "vercel", invert: true },
-      { name: "Linux", icon: "linux" },
-    ],
+    description: "Tooling and delivery practices that keep releases repeatable and teams moving.",
+    skills: ["Git", "GitHub", "Docker", "Vercel", "Linux"],
   },
 ];
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="border-t border-zinc-900 py-24">
-      <div className="mx-auto max-w-5xl px-6">
+    <section id="skills">
+      <div className="section-shell">
         <FadeIn>
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-100">
-            Skills & Tools
-          </h2>
-          <p className="mt-3 max-w-xl text-zinc-400">
-            The stack I work with most, grouped by area.
-          </p>
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">How I Build</p>
+              <h2 className="section-title">
+                Skills &amp; Tools <span className="section-count">[04]</span>
+              </h2>
+            </div>
+          </div>
         </FadeIn>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2">
-          {groups.map((group) => (
-            <FadeIn key={group.title}>
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-cyan-400">
+        <div className="border-y border-border">
+          {groups.map((group, index) => (
+            <FadeIn key={group.title} delay={index * 0.05}>
+              <article className="group grid gap-5 border-b border-border px-2 py-8 transition-colors last:border-b-0 hover:bg-white sm:px-6 lg:grid-cols-[64px_0.8fr_1.2fr] lg:items-start lg:gap-8">
+                <p className="text-sm text-muted">
+                  {(index + 1).toString().padStart(2, "0")}
+                </p>
+                <h3 className="text-[clamp(1.65rem,3vw,2.5rem)] font-bold leading-none tracking-[-0.035em]">
                   {group.title}
                 </h3>
-                <ul className="mt-4 flex flex-wrap gap-2">
-                  {group.skills.map((skill) => (
+                <div>
+                  <p className="max-w-xl text-[15px] leading-7 text-muted">
+                    {group.description}
+                  </p>
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {group.skills.map((skill) => (
                     <li
-                      key={skill.name}
-                      className="flex items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-300 transition duration-200 hover:scale-105 hover:border-cyan-400 hover:bg-zinc-800"
+                      key={skill}
+                      className="rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium transition-colors group-hover:bg-surface"
                     >
-                      <Image
-                        src={devicon(skill.icon)}
-                        alt=""
-                        aria-hidden
-                        width={18}
-                        height={18}
-                        unoptimized
-                        className={skill.invert ? "invert" : undefined}
-                      />
-                      <span>{skill.name}</span>
+                      {skill}
                     </li>
                   ))}
-                </ul>
-              </div>
+                  </ul>
+                </div>
+              </article>
             </FadeIn>
           ))}
         </div>

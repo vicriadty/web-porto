@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import type { Project } from "@/lib/projects";
 
 export function ProjectCard({
@@ -10,7 +10,7 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
-  const reduce = false; // TEMP: preview scroll animations
+  const reduce = useReducedMotion();
 
   return (
     <motion.article
@@ -18,55 +18,57 @@ export function ProjectCard({
       whileInView={reduce ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
-      className="flex h-full flex-col rounded-2xl border border-zinc-900 bg-surface p-6"
+      className="project-card group h-full rounded-[24px] bg-surface p-3 transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
     >
-      <div
-        aria-hidden="true"
-        className="flex h-40 items-center justify-center rounded-xl border border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-950"
+      <a
+        href={project.githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`View ${project.title} source code on GitHub`}
+        className="block h-full rounded-[20px]"
       >
-        <span className="text-3xl font-bold text-zinc-300">
-          {project.title.slice(0, 1)}
-        </span>
-      </div>
+        <div className="project-preview" aria-hidden="true">
+          <span className="project-preview-grid" />
+          <span className="project-preview-index">
+            PROJECT / {(index + 1).toString().padStart(2, "0")}
+          </span>
+          <span className="project-preview-mark">
+            {project.title.slice(0, 2).toUpperCase()}
+          </span>
+        </div>
 
-      <h3 className="mt-6 text-xl font-semibold text-zinc-100">
-        {project.title}
-      </h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-        {project.description}
-      </p>
-
-      <ul className="mt-4 flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <li
-            key={tag}
-            className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300"
-          >
-            {tag}
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-6 flex gap-3">
-        <a
-          href={project.liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${project.title} live demo`}
-          className="rounded-full bg-cyan-500 px-4 py-2 text-sm font-semibold text-zinc-950 transition-colors hover:bg-cyan-400"
-        >
-          Live Demo
-        </a>
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`${project.title} source code on GitHub`}
-          className="rounded-full border border-zinc-700 px-4 py-2 text-sm font-semibold text-zinc-200 transition-colors hover:border-cyan-400 hover:text-cyan-300"
-        >
-          GitHub
-        </a>
-      </div>
+        <div className="p-3 pb-4 pt-5">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h3 className="text-xl font-semibold tracking-[-0.02em]">
+                {project.title}
+              </h3>
+              <p className="mt-1 text-sm text-muted">
+                {project.category} · {project.year}
+              </p>
+            </div>
+            <span
+              aria-hidden="true"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border transition-colors group-hover:border-ink group-hover:bg-ink group-hover:text-white"
+            >
+              ↗
+            </span>
+          </div>
+          <p className="mt-5 max-w-lg text-sm leading-6 text-muted">
+            {project.description}
+          </p>
+          <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
+            {project.tags.map((tag) => (
+              <li
+                key={tag}
+                className="rounded-full border border-border px-3 py-1 text-xs font-medium text-muted"
+              >
+                {tag}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </a>
     </motion.article>
   );
 }
