@@ -1,5 +1,6 @@
 import { FadeIn } from "./FadeIn";
 import { site } from "@/lib/site";
+import { CountUp } from "./CountUp";
 
 const paragraphs = [
   "I'm a full-stack web developer focused on shipping fast, accessible products. I enjoy the whole journey — designing the data model, building the API, and crafting a UI that feels effortless.",
@@ -16,7 +17,7 @@ export function AboutSection() {
             <div>
               <p className="section-kicker">Profile</p>
               <h2 className="section-title">
-                About <span className="section-count">[01]</span>
+                About <CountUp value={1} minDigits={2} className="section-count" />
               </h2>
             </div>
           </div>

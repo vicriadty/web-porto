@@ -2,6 +2,7 @@ export type { Project } from "@/lib/projects";
 import { projects } from "@/lib/projects";
 import { ProjectCard } from "./ProjectCard";
 import { FadeIn } from "./FadeIn";
+import { CountUp } from "./CountUp";
 
 export function ProjectsSection() {
   return (
@@ -12,7 +13,12 @@ export function ProjectsSection() {
             <div>
               <p className="section-kicker">Selected Work</p>
               <h2 className="section-title">
-                Work <span className="section-count">[{projects.length.toString().padStart(2, "0")}]</span>
+                Work{" "}
+                <CountUp
+                  value={projects.length}
+                  minDigits={2}
+                  className="section-count"
+                />
               </h2>
             </div>
             <p className="hidden max-w-sm text-right text-[15px] leading-7 text-muted md:block">
