@@ -1,4 +1,5 @@
 import { FadeIn } from "./FadeIn";
+import { CountUp } from "./CountUp";
 
 type Group = { title: string; description: string; skills: string[] };
 
@@ -48,7 +49,12 @@ export function SkillsSection() {
             <div>
               <p className="section-kicker">How I Build</p>
               <h2 className="section-title">
-                Skills &amp; Tools <span className="section-count">[04]</span>
+                Skills &amp; Tools{" "}
+                <CountUp
+                  value={groups.length}
+                  minDigits={2}
+                  className="section-count"
+                />
               </h2>
             </div>
           </div>

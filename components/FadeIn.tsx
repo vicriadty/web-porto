@@ -17,6 +17,7 @@ export function FadeIn({
   return (
     <motion.div
       ref={ref}
+      data-motion-element
       initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       animate={reduce ? {} : isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}

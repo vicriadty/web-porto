@@ -1,16 +1,28 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { FadeIn } from "./FadeIn";
 import { site } from "@/lib/site";
 
 type Status = "idle" | "loading" | "success" | "error";
 
 const inputClass = "contact-input";
+const headline = ["Let's", "work", "together"];
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: "easeOut" as const },
+  },
+};
 
 export function ContactSection() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
+  const reduce = useReducedMotion();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -51,21 +63,47 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="mx-auto w-full max-w-[1432px] px-4 pb-4">
-      <div className="overflow-hidden rounded-[28px] bg-ink px-6 py-16 text-white sm:px-10 lg:px-16 lg:py-20">
-        <FadeIn>
+      <motion.div
+        data-motion-element
+        initial={reduce ? false : { opacity: 0, scale: 0.98 }}
+        whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.65, ease: "easeOut" }}
+        className="overflow-hidden rounded-[28px] bg-ink px-6 py-16 text-white sm:px-10 lg:px-16 lg:py-20"
+      >
+        <div>
           <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-white/60">
             Get in Touch
           </p>
-          <h2 className="mt-4 max-w-5xl text-[clamp(2.75rem,7vw,6.5rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.055em]">
-            Let&apos;s work together
-          </h2>
+          <motion.h2
+            initial={reduce ? false : "hidden"}
+            whileInView={reduce ? undefined : "visible"}
+            viewport={{ once: true, margin: "-80px" }}
+            variants={{
+              visible: {
+                transition: { staggerChildren: 0.04, delayChildren: 0.08 },
+              },
+            }}
+            className="mt-4 max-w-5xl text-[clamp(2.75rem,7vw,6.5rem)] font-extrabold uppercase leading-[0.9] tracking-[-0.055em]"
+          >
+            {headline.map((word) => (
+              <motion.span
+                key={word}
+                data-motion-element
+                variants={wordVariants}
+                className="mr-[0.18em] inline-block last:mr-0"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </motion.h2>
           <a
             href={`mailto:${site.email}`}
             className="mt-8 inline-block max-w-full py-2.5 [overflow-wrap:anywhere] text-[clamp(1.65rem,4.5vw,4.5rem)] font-semibold leading-none tracking-[-0.04em] underline decoration-white/30 underline-offset-8 transition-colors hover:decoration-white sm:mt-10"
           >
             {site.email}
           </a>
-        </FadeIn>
+        </div>
 
         <div className="mt-16 grid gap-12 border-t border-white/20 pt-12 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
           <FadeIn>
@@ -190,7 +228,7 @@ export function ContactSection() {
           </form>
           </FadeIn>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

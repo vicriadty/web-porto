@@ -14,6 +14,7 @@ export function ProjectCard({
 
   return (
     <motion.article
+      data-motion-element
       initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
       whileInView={reduce ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
@@ -27,7 +28,16 @@ export function ProjectCard({
         aria-label={`View ${project.title} source code on GitHub`}
         className="block h-full rounded-[20px]"
       >
-        <div className="project-preview" aria-hidden="true">
+        <motion.div
+          data-motion-element
+          initial={reduce ? { scale: 1 } : { scale: 1.06 }}
+          whileInView={{ scale: 1 }}
+          whileHover={reduce ? undefined : { scale: 1.03 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="project-preview"
+          aria-hidden="true"
+        >
           <span className="project-preview-grid" />
           <span className="project-preview-index">
             PROJECT / {(index + 1).toString().padStart(2, "0")}
@@ -35,7 +45,7 @@ export function ProjectCard({
           <span className="project-preview-mark">
             {project.title.slice(0, 2).toUpperCase()}
           </span>
-        </div>
+        </motion.div>
 
         <div className="p-3 pb-4 pt-5">
           <div className="flex items-start justify-between gap-4">
