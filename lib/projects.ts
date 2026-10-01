@@ -2,7 +2,8 @@ export type Project = {
   title: string;
   description: string;
   tags: string[];
-  liveUrl: string;
+  category: string;
+  year: string;
   githubUrl: string;
 };
 
@@ -12,7 +13,8 @@ export const projects: Project[] = [
     description:
       "Full-stack storefront with cart, checkout, and an admin dashboard for managing inventory.",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe"],
-    liveUrl: "https://example.com",
+    category: "E-commerce",
+    year: "2026",
     githubUrl: "https://github.com/vicriadty/nordic-store",
   },
   {
@@ -20,7 +22,8 @@ export const projects: Project[] = [
     description:
       "REST API for a team task manager — auth, roles, realtime notifications, and tests.",
     tags: ["Node.js", "Express", "PostgreSQL", "Redis", "Jest"],
-    liveUrl: "https://example.com",
+    category: "Backend System",
+    year: "2025",
     githubUrl: "https://github.com/vicriadty/taskflow-api",
   },
   {
@@ -28,7 +31,8 @@ export const projects: Project[] = [
     description:
       "Analytics dashboard that turns raw events into live, filterable charts.",
     tags: ["React", "TypeScript", "Chart.js", "WebSocket"],
-    liveUrl: "https://example.com",
+    category: "Data Product",
+    year: "2025",
     githubUrl: "https://github.com/vicriadty/insightboard",
   },
   {
@@ -36,7 +40,8 @@ export const projects: Project[] = [
     description:
       "Vite-powered landing page builder with drag-and-drop sections and theming.",
     tags: ["React", "Vite", "Tailwind CSS", "Zustand"],
-    liveUrl: "https://example.com",
+    category: "Developer Tool",
+    year: "2024",
     githubUrl: "https://github.com/vicriadty/landihost",
   },
 ];

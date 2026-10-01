@@ -1,4 +1,6 @@
 export const site = {
+  firstName: "Vicri",
+  lastName: "Aditiya",
   name: "Vicri Aditiya",
   role: "Full-Stack Developer",
   tagline:
@@ -10,4 +12,5 @@ export const site = {
   linkedinLabel: "linkedin.com/in/vicriadty",
   resumeUrl: "/Vicri_Aditiya_Resume.pdf",
   location: "Indonesia",
+  availability: "Available for New Project",
 } as const;

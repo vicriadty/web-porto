@@ -4,17 +4,17 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-zinc-900 py-8">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-sm text-zinc-400 sm:flex-row">
+    <footer className="py-8">
+      <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-5 px-6 text-sm text-muted sm:flex-row sm:items-center lg:px-12">
         <p>
-          &copy; {year} {site.name}. All rights reserved.
+          &copy; {year} {site.name}
         </p>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
           <a
             href={site.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-zinc-200"
+            className="inline-flex min-h-11 items-center transition-colors hover:text-ink"
           >
             GitHub
           </a>
@@ -22,9 +22,15 @@ export function Footer() {
             href={site.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-zinc-200"
+            className="inline-flex min-h-11 items-center transition-colors hover:text-ink"
           >
             LinkedIn
+          </a>
+          <a
+            href="#hero"
+            className="inline-flex min-h-11 items-center transition-colors hover:text-ink"
+          >
+            Back to top ↑
           </a>
         </div>
       </div>

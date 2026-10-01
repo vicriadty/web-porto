@@ -1,8 +1,7 @@
 import { site } from "@/lib/site";
 
 const links = [
-  { href: "#home", label: "Home" },
-  { href: "#projects", label: "Projects" },
+  { href: "#projects", label: "Work" },
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
   { href: "#contact", label: "Contact" },
@@ -10,38 +9,34 @@ const links = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-40 border-b border-zinc-900 bg-background/80 backdrop-blur">
+    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
       <nav
         aria-label="Main"
-        className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6"
+        className="pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-border bg-white/85 p-1.5 pl-2 shadow-[0_8px_24px_rgba(0,0,0,0.06)] backdrop-blur-xl"
       >
         <a
-          href="#home"
-          className="text-base font-semibold tracking-tight text-zinc-100"
+          href="#hero"
+          className="status-badge border-0 bg-transparent px-2 sm:px-3"
         >
-          {site.name}
+          <span className="status-dot" aria-hidden="true" />
+          <span className="hidden sm:inline">{site.availability}</span>
+          <span className="sm:hidden">Available</span>
         </a>
-        <ul className="hidden items-center gap-6 md:flex">
+        <ul className="hidden items-center gap-1 md:flex">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
+                className="inline-flex min-h-11 items-center rounded-full px-4 text-sm font-medium text-muted transition-colors hover:bg-card hover:text-ink"
               >
                 {link.label}
               </a>
             </li>
           ))}
-          <li>
-            <a
-              href={site.resumeUrl}
-              download="Vicri_Aditiya_Resume.pdf"
-              className="rounded-full border border-zinc-700 px-4 py-1.5 text-sm text-zinc-200 transition-colors hover:border-cyan-400 hover:text-cyan-300"
-            >
-              CV
-            </a>
-          </li>
         </ul>
+        <a href="#contact" className="btn-primary min-h-11 px-4 sm:px-5">
+          Let&apos;s Talk <span aria-hidden="true">↗</span>
+        </a>
       </nav>
     </header>
   );
