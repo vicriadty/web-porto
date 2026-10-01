@@ -51,7 +51,7 @@ export function SkillsSection() {
               <h2 className="section-title">
                 Skills &amp; Tools{" "}
                 <CountUp
-                  value={groups.length}
+                  value={3}
                   minDigits={2}
                   className="section-count"
                 />

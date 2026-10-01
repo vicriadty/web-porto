@@ -9,39 +9,39 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "Nordic Store",
+    title: "Klinik Sepatu",
     description:
-      "Full-stack storefront with cart, checkout, and an admin dashboard for managing inventory.",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Stripe"],
-    category: "E-commerce",
+      "Shoe-care service platform with a customer web app, Expo mobile app, and Laravel API for bookings, order tracking, and admin operations.",
+    tags: ["React", "TypeScript", "Laravel", "Expo", "Tailwind CSS"],
+    category: "Service Platform",
     year: "2026",
-    githubUrl: "https://github.com/vicriadty/nordic-store",
+    githubUrl: "https://github.com/vicriadty/klinik-sepatu",
   },
   {
-    title: "TaskFlow API",
+    title: "POShoes",
     description:
-      "REST API for a team task manager — auth, roles, realtime notifications, and tests.",
-    tags: ["Node.js", "Express", "PostgreSQL", "Redis", "Jest"],
-    category: "Backend System",
+      "Offline-first point of sale for a shoe store — Laravel backend with a Svelte PWA storefront that keeps selling without a connection.",
+    tags: ["Laravel", "Svelte", "Tailwind CSS", "PWA", "IndexedDB"],
+    category: "Business App",
+    year: "2026",
+    githubUrl: "https://github.com/vicriadty/POShoes",
+  },
+  {
+    title: "Bank Sampah",
+    description:
+      "Waste-bank management system covering members, collectors, deposits, sales, and PDF reports.",
+    tags: ["Laravel", "Blade", "MySQL", "Bootstrap"],
+    category: "Web Platform",
     year: "2025",
-    githubUrl: "https://github.com/vicriadty/taskflow-api",
+    githubUrl: "https://github.com/vicriadty/bank-sampah",
   },
   {
-    title: "Insightboard",
+    title: "Simaset",
     description:
-      "Analytics dashboard that turns raw events into live, filterable charts.",
-    tags: ["React", "TypeScript", "Chart.js", "WebSocket"],
-    category: "Data Product",
+      "Simple multi-table management system for users and inventory — native PHP CRUD with a Bootstrap interface.",
+    tags: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
+    category: "Internal Tool",
     year: "2025",
-    githubUrl: "https://github.com/vicriadty/insightboard",
-  },
-  {
-    title: "Landihost",
-    description:
-      "Vite-powered landing page builder with drag-and-drop sections and theming.",
-    tags: ["React", "Vite", "Tailwind CSS", "Zustand"],
-    category: "Developer Tool",
-    year: "2024",
-    githubUrl: "https://github.com/vicriadty/landihost",
+    githubUrl: "https://github.com/vicriadty/simaset",
   },
 ];

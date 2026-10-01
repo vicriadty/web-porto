@@ -1,14 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import {
-  motion,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { site } from "@/lib/site";
+import { useHydrationSafeReducedMotion } from "./useHydrationSafeReducedMotion";
 
 const socials = [
   { label: "GitHub", href: site.github },
@@ -17,7 +13,7 @@ const socials = [
 ];
 
 export function Hero() {
-  const reduce = useReducedMotion();
+  const reduce = useHydrationSafeReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -27,7 +23,8 @@ export function Hero() {
   const portraitY = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   const reveal = (delay: number) => ({
-    initial: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 },
+    initial:
+      reduce === false ? { opacity: 0, y: 24 } : { opacity: 1, y: 0 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6, delay, ease: "easeOut" as const },
   });
@@ -41,7 +38,7 @@ export function Hero() {
       <div className="[--hero-pad:clamp(24px,4vw,64px)] relative grid min-h-[calc(100svh-32px)] grid-rows-[auto_1fr] overflow-hidden rounded-[28px] bg-card p-[var(--hero-pad)] pt-32 sm:pt-36">
         <motion.div
           data-motion-element
-          style={{ y: reduce ? 0 : nameY }}
+          style={{ y: reduce === false ? nameY : 0 }}
           className="relative z-0"
         >
           <motion.div
@@ -49,8 +46,8 @@ export function Hero() {
             data-motion-element
             className="text-center"
           >
-            <h1 className="flex flex-col justify-center text-[clamp(3.5rem,12vw,11rem)] font-black uppercase leading-[0.76] tracking-[-0.055em] sm:flex-row sm:gap-[0.08em] sm:whitespace-nowrap">
-              <span className="text-outline">{site.firstName}</span>
+            <h1 className="text-[clamp(3.5rem,12vw,11rem)] font-black uppercase leading-[0.76] tracking-[-0.055em] sm:whitespace-nowrap">
+              <span className="text-outline">{site.firstName}</span>{" "}
               <span>{site.lastName}</span>
             </h1>
           </motion.div>
@@ -62,7 +59,7 @@ export function Hero() {
             data-motion-element
             className="max-w-[320px] md:pb-2"
           >
-            <p className="text-2xl font-semibold tracking-[-0.02em]">
+            <p className="text-[28px] font-semibold leading-tight tracking-[-0.02em]">
               {site.role}
             </p>
             <p className="mt-4 text-[15px] leading-7 text-muted">
@@ -75,12 +72,14 @@ export function Hero() {
 
           <motion.figure
             data-motion-element
-            style={{ y: reduce ? 0 : portraitY }}
+            style={{ y: reduce === false ? portraitY : 0 }}
             className="relative order-first mx-auto h-[min(120vw,520px)] w-full max-w-[400px] md:order-none md:mb-[calc(var(--hero-pad)*-1)] md:h-[min(78vh,760px)]"
           >
             <motion.div
               data-motion-element
-              initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              initial={
+                reduce === false ? { opacity: 0, y: 24 } : { opacity: 1, y: 0 }
+              }
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
               className="relative h-full w-full"
@@ -99,8 +98,17 @@ export function Hero() {
             {...reveal(0.34)}
             data-motion-element
             aria-label="Social links"
-            className="flex flex-wrap gap-3 md:flex-col md:items-end md:pb-2"
+            className="relative flex flex-wrap gap-3 md:flex-col md:items-end md:pb-2"
           >
+            <svg
+              aria-hidden="true"
+              focusable="false"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="pointer-events-none absolute -top-9 right-2 hidden h-7 w-7 rotate-[15deg] text-ink md:block"
+            >
+              <path d="M5 3l14 9-7.5 1.2L9 20 5 3z" />
+            </svg>
             {socials.map((social) => (
               <li key={social.label}>
                 <a

@@ -1,4 +1,9 @@
+"use client";
+
+import { useState } from "react";
+import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { site } from "@/lib/site";
+import { useHydrationSafeReducedMotion } from "./useHydrationSafeReducedMotion";
 
 const links = [
   { href: "#projects", label: "Work" },
@@ -8,8 +13,22 @@ const links = [
 ];
 
 export function Navbar() {
+  const reduce = useHydrationSafeReducedMotion();
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    setHidden(latest > previous && latest > 140);
+  });
+
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4">
+    <motion.header
+      initial={false}
+      animate={{ y: hidden && !reduce ? "-130%" : "0%" }}
+      transition={{ duration: 0.3, ease: "easeOut" }}
+      className="pointer-events-none fixed inset-x-0 top-4 z-50 px-4"
+    >
       <nav
         aria-label="Main"
         className="pointer-events-auto mx-auto flex w-full max-w-5xl items-center justify-between gap-3 rounded-full border border-border bg-white/85 p-1.5 pl-2 shadow-[0_8px_24px_rgba(0,0,0,0.06)] backdrop-blur-xl"
@@ -38,6 +57,6 @@ export function Navbar() {
           Let&apos;s Talk <span aria-hidden="true">↗</span>
         </a>
       </nav>
-    </header>
+    </motion.header>
   );
 }

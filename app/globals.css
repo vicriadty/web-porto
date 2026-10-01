@@ -55,7 +55,8 @@ textarea {
 
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 2px var(--ink);
+  -webkit-text-stroke: 3px var(--ink);
+  paint-order: stroke fill;
 }
 
 .section-shell {
@@ -327,7 +328,7 @@ textarea {
 
 @media (max-width: 767px) {
   .text-outline {
-    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-width: 2px;
   }
 
   .section-heading {

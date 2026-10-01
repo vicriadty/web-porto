@@ -26,7 +26,10 @@ export function AboutSection() {
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.5fr]">
           <FadeIn>
             <aside className="flex h-full min-h-80 flex-col justify-between rounded-[24px] bg-ink p-8 text-white sm:p-10">
-              <p className="text-sm font-medium uppercase tracking-[0.08em] text-white/60">
+              <p
+                aria-label="Based in Indonesia"
+                className="text-sm font-medium uppercase tracking-[0.08em] text-white/60"
+              >
                 Based in {site.location}
               </p>
               <p className="max-w-xs text-3xl font-semibold leading-tight tracking-[-0.035em] sm:text-4xl">

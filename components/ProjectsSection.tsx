@@ -15,7 +15,7 @@ export function ProjectsSection() {
               <h2 className="section-title">
                 Work{" "}
                 <CountUp
-                  value={projects.length}
+                  value={2}
                   minDigits={2}
                   className="section-count"
                 />
