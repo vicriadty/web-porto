@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { Project } from "@/lib/projects";
+import { useHydrationSafeReducedMotion } from "./useHydrationSafeReducedMotion";
 
 export function ProjectCard({
   project,
@@ -10,13 +11,13 @@ export function ProjectCard({
   project: Project;
   index: number;
 }) {
-  const reduce = useReducedMotion();
+  const reduce = useHydrationSafeReducedMotion();
 
   return (
     <motion.article
       data-motion-element
-      initial={reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      whileInView={reduce ? {} : { opacity: 1, y: 0 }}
+      initial={reduce === false ? { opacity: 0, y: 24 } : { opacity: 1, y: 0 }}
+      whileInView={reduce === false ? { opacity: 1, y: 0 } : {}}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, delay: index * 0.08, ease: "easeOut" }}
       className="project-card group h-full rounded-[24px] bg-surface p-3 transition-[box-shadow,transform] duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
@@ -30,9 +31,9 @@ export function ProjectCard({
       >
         <motion.div
           data-motion-element
-          initial={reduce ? { scale: 1 } : { scale: 1.06 }}
+          initial={reduce === false ? { scale: 1.06 } : { scale: 1 }}
           whileInView={{ scale: 1 }}
-          whileHover={reduce ? undefined : { scale: 1.03 }}
+          whileHover={reduce === false ? { scale: 1.03 } : undefined}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="project-preview"

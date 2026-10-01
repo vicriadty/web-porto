@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
+import { useHydrationSafeReducedMotion } from "./useHydrationSafeReducedMotion";
+import { CountUp } from "./CountUp";
 import { FadeIn } from "./FadeIn";
 import { site } from "@/lib/site";
 
@@ -22,7 +24,7 @@ const wordVariants = {
 export function ContactSection() {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState<string | null>(null);
-  const reduce = useReducedMotion();
+  const reduce = useHydrationSafeReducedMotion();
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -65,19 +67,20 @@ export function ContactSection() {
     <section id="contact" className="mx-auto w-full max-w-[1432px] px-4 pb-4">
       <motion.div
         data-motion-element
-        initial={reduce ? false : { opacity: 0, scale: 0.98 }}
-        whileInView={reduce ? undefined : { opacity: 1, scale: 1 }}
+        initial={reduce === false ? { opacity: 0, scale: 0.98 } : false}
+        whileInView={reduce === false ? { opacity: 1, scale: 1 } : undefined}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.65, ease: "easeOut" }}
         className="overflow-hidden rounded-[28px] bg-ink px-6 py-16 text-white sm:px-10 lg:px-16 lg:py-20"
       >
         <div>
           <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-white/60">
-            Get in Touch
+            Get in Touch{" "}
+            <CountUp value={4} minDigits={1} className="text-white/40" />
           </p>
           <motion.h2
-            initial={reduce ? false : "hidden"}
-            whileInView={reduce ? undefined : "visible"}
+            initial={reduce === false ? "hidden" : false}
+            whileInView={reduce === false ? "visible" : undefined}
             viewport={{ once: true, margin: "-80px" }}
             variants={{
               visible: {

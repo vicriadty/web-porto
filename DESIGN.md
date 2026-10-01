@@ -85,23 +85,23 @@ Portfolio personal satu halaman (one-page) dengan gaya **monokrom editorial**: b
 
 ```
 <body>  (background --page-bg)
-├── <nav>            sticky, floating pill, selalu terlihat
+├── <nav>            floating pill, hide-on-scroll-down / show-on-scroll-up
 └── <main>           (max-width 1400px, centered)
     ├── <section id="hero">       kartu besar rounded, min-height 92vh
-    ├── <section id="work">       grid kartu proyek
-    ├── <section id="service">    daftar baris layanan
-    ├── <section id="experience"> daftar baris pengalaman
+    ├── <section id="projects">   grid kartu proyek
+    ├── <section id="about">      profil + tombol CV
+    ├── <section id="skills">     daftar baris keahlian
     ├── <section id="contact">    kartu hitam + CTA besar
     └── <footer>     copyright, sosmed mini, back-to-top
 ```
 
-Urutan nav dan anchor: Work → Service → Experience → Contact.
+Urutan nav dan anchor: Work → About → Skills → Contact.
 
 ---
 
 ## 4. Spesifikasi per Section
 
-### 4.1 Navigasi (sticky, global)
+### 4.1 Navigasi (floating pill, hide-on-scroll, global)
 
 Menggantikan nav internal di dalam kartu hero pada gambar referensi — cukup **satu** nav global agar konsisten di full page.
 
@@ -109,9 +109,10 @@ Menggantikan nav internal di dalam kartu hero pada gambar referensi — cukup **
 - Bentuk: pill, `background: rgba(255,255,255,0.85)` + `backdrop-filter: blur(12px)`, border 1px `--border`, shadow halus.
 - Isi (kiri ke kanan):
   1. Status badge: dot hijau (animasi pulse) + teks "Available for New Project".
-  2. Link tengah: Work, Service, Experience, Contact (anchor ke `#id` masing-masing).
+  2. Link tengah: Work, About, Skills, Contact (anchor ke `#id` masing-masing).
   3. Tombol kanan: "Let's Talk ↗" (`.btn-primary` ukuran kecil).
 - Mobile (<768px): sembunyikan link tengah; tampilkan badge + tombol CTA saja (atau hamburger bila link dirasa perlu).
+- Perilaku scroll: nav bersembunyi saat scroll ke bawah dan muncul kembali saat scroll ke atas, agar tidak menutupi konten. Nonaktif saat `prefers-reduced-motion: reduce`.
 
 ### 4.2 Hero (`#hero`)
 
@@ -139,7 +140,7 @@ Replika setia gambar referensi.
 ### 4.3 Work (`#work`)
 
 - **Section head**: kicker "Selected Work" + judul "Work" + count badge `[{{WORK_COUNT}}]` (muted, kecil).
-- **Grid**: 2 kolom di desktop, `gap: 24px`. Tampilkan 6 proyek unggulan.
+- **Grid**: 2 kolom di desktop, `gap: 24px`. Tampilkan 4 proyek unggulan.
 - **Kartu proyek**:
   - Thumbnail 16:10, `border-radius: 20px`, `overflow: hidden`.
   - Gambar default grayscale; saat hover: berwarna + `scale(1.03)` (transisi 0.4s).
@@ -148,22 +149,24 @@ Replika setia gambar referensi.
 - **Mobile**: 1 kolom.
 - Opsional: tombol "View all projects" (`.btn-ghost`) di bawah grid.
 
-### 4.4 Service (`#service`)
+### 4.4 About (`#about`)
 
-- **Section head**: kicker "What I Do" + judul "Service" + `[{{SERVICE_COUNT}}]`.
-- **Daftar baris** (4 baris sesuai referensi, boleh menyesuaikan jumlah):
+- **Section head**: kicker "Profile" + judul "About" + nomor urut `[01]`.
+- **Kartu aside gelap** (`background: var(--ink)`, teks putih, radius 24px):
+  - Label lokasi ("Based in Indonesia", dengan `aria-label` eksplisit agar screen reader membaca spasi).
+  - Statement 1 kalimat (3xl/600).
+  - Tombol "Download CV ↗" (`.btn-light`).
+- **Kartu body** (`background: var(--card-bg)`, radius 24px): headline besar + 2 paragraf (15px, `--muted`).
+
+### 4.5 Skills & Tools (`#skills`)
+
+- **Section head**: kicker "How I Build" + judul "Skills & Tools" + nomor urut `[03]`.
+- **Daftar baris** (4 grup):
   - Kolom 1: nomor "01", "02", … (14px, `--muted`).
-  - Kolom 2: judul layanan (`clamp(1.5rem, 3vw, 2.5rem)`, 700).
+  - Kolom 2: judul grup (`clamp(1.65rem, 3vw, 2.5rem)`, 700).
   - Kolom 3: deskripsi 1–2 kalimat (15px, `--muted`) + tags kecil (pill outline).
-- Divider 1px `--border` antar baris; padding vertikal 32px per baris.
-- Hover (desktop): background `--surface`, ikon panah ↗ muncul di kanan.
-
-### 4.5 Experience (`#experience`)
-
-- **Section head**: kicker "Career" + judul "Experience" + badge total tahun `[{{YEARS}}y+]`.
-- **Daftar baris**: periode ("2021 — Now", 14px `--muted`) | peran (20px/600) | perusahaan + lokasi (`--muted`).
-- Divider antar baris; hover: highlight halus.
-- Opsional: tombol "Download CV" (`.btn-ghost`) di bawah daftar.
+- Divider 1px `--border` antar baris.
+- Hover (desktop): background `--surface`.
 
 ### 4.6 Contact (`#contact`)
 
@@ -293,7 +296,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     - Teks nama: `y` 0 → 120px.
     - Foto: `y` 0 → 40px (lebih lambat dari teks → efek depth karena keduanya overlap).
 - **Work**: tiap kartu dibungkus `<Reveal delay={index * 0.08}>`. Thumbnail: `whileInView` scale 1.06 → 1 (transisi 0.7s).
-- **Service & Experience**: tiap baris `<Reveal delay={index * 0.06}>`.
+- **About & Skills**: tiap blok/baris `<Reveal delay={index * 0.06}>`.
 - **Contact**: kartu hitam `whileInView` fade + scale 0.98 → 1; headline di-reveal **per kata** (pecah teks menjadi array kata, tiap kata stagger 0.04s).
 - **Nav sticky** (opsional): tambahkan blur/shadow setelah scroll > 40px via `useScroll` atau scroll listener.
 

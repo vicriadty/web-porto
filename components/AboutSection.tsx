@@ -17,7 +17,8 @@ export function AboutSection() {
             <div>
               <p className="section-kicker">Profile</p>
               <h2 className="section-title">
-                About <CountUp value={1} minDigits={2} className="section-count" />
+                About{" "}
+                <CountUp value={2} minDigits={1} className="section-count" />
               </h2>
             </div>
           </div>
@@ -26,7 +27,10 @@ export function AboutSection() {
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.5fr]">
           <FadeIn>
             <aside className="flex h-full min-h-80 flex-col justify-between rounded-[24px] bg-ink p-8 text-white sm:p-10">
-              <p className="text-sm font-medium uppercase tracking-[0.08em] text-white/60">
+              <p
+                aria-label="Based in Indonesia"
+                className="text-sm font-medium uppercase tracking-[0.08em] text-white/60"
+              >
                 Based in {site.location}
               </p>
               <p className="max-w-xs text-3xl font-semibold leading-tight tracking-[-0.035em] sm:text-4xl">
@@ -52,7 +56,9 @@ export function AboutSection() {
             <div className="mt-12 grid gap-6 border-t border-border pt-8 md:grid-cols-2">
               {paragraphs.slice(0, 2).map((paragraph, index) => (
                 <FadeIn key={paragraph.slice(0, 24)} delay={0.08 * index}>
-                  <p className="text-[15px] leading-7 text-muted">{paragraph}</p>
+                  <p className="text-[15px] leading-7 text-muted">
+                    {paragraph}
+                  </p>
                 </FadeIn>
               ))}
             </div>
