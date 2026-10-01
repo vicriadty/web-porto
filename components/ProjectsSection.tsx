@@ -14,11 +14,7 @@ export function ProjectsSection() {
               <p className="section-kicker">Selected Work</p>
               <h2 className="section-title">
                 Work{" "}
-                <CountUp
-                  value={2}
-                  minDigits={2}
-                  className="section-count"
-                />
+                <CountUp value={1} minDigits={1} className="section-count" />
               </h2>
             </div>
             <p className="hidden max-w-sm text-right text-[15px] leading-7 text-muted md:block">

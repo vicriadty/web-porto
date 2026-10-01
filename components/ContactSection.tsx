@@ -76,7 +76,7 @@ export function ContactSection() {
         <div>
           <p className="text-[13px] font-medium uppercase tracking-[0.08em] text-white/60">
             Get in Touch{" "}
-            <CountUp value={4} minDigits={2} className="text-white/40" />
+            <CountUp value={4} minDigits={1} className="text-white/40" />
           </p>
           <motion.h2
             initial={reduce === false ? "hidden" : false}

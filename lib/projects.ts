@@ -20,7 +20,7 @@ export const projects: Project[] = [
   {
     title: "POShoes",
     description:
-      "Offline-first point of sale for a shoe store — Laravel backend with a Svelte PWA storefront that keeps selling without a connection.",
+      "Offline-first point of sale for a shoe store - Laravel backend with a Svelte PWA storefront that keeps selling without a connection.",
     tags: ["Laravel", "Svelte", "Tailwind CSS", "PWA", "IndexedDB"],
     category: "Business App",
     year: "2026",
@@ -38,7 +38,7 @@ export const projects: Project[] = [
   {
     title: "Simaset",
     description:
-      "Simple multi-table management system for users and inventory — native PHP CRUD with a Bootstrap interface.",
+      "Simple multi-table management system for users and inventory - native PHP CRUD with a Bootstrap interface.",
     tags: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
     category: "Internal Tool",
     year: "2025",

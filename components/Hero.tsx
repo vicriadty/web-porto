@@ -88,6 +88,7 @@ export function Hero() {
                 src="/hero-image.png"
                 alt={`Portrait of ${site.name}`}
                 fill
+                priority
                 sizes="(max-width: 767px) 80vw, 400px"
                 className="object-contain object-bottom grayscale mix-blend-multiply"
               />
