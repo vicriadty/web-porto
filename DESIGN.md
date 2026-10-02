@@ -57,12 +57,31 @@ Portfolio personal satu halaman (one-page) dengan gaya **monokrom editorial**: b
 | Kicker section         | 13px, uppercase, tracking `0.08em`  | 500    | Warna `--muted`                |
 | Count `[n]`            | 0.55em dari judul induk             | 400    | Warna `--muted`, contoh `[40]` |
 
-**Outline text** (untuk kata pertama nama hero):
+**Display font**: `"Archivo"` (weight 800 untuk judul section, 900 untuk
+nama hero), fallback `"Inter Tight"`, lalu `system-ui, sans-serif`.
+Load hanya weight yang dipakai via `next/font/google` (`display: swap`).
+
+**Nama hero** di-render sebagai satu SVG `<text>` (bukan HTML + CSS
+text-stroke — stroke CSS pecah di join huruf "R"). Satu elemen teks berisi
+dua `<tspan>`: outline (`VICRI`) + solid (`ADITYA`), sehingga tidak ada seam.
 
 ```css
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 2px var(--ink);
+.hero-name text {
+  font-family: var(--font-display), "Inter Tight", system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 170px;
+  letter-spacing: -0.02em;
+}
+.name-outline {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  paint-order: stroke;
+  stroke-linejoin: round;
+}
+.name-solid {
+  fill: var(--ink);
+  stroke: none;
 }
 ```
 
@@ -119,15 +138,18 @@ Menggantikan nav internal di dalam kartu hero pada gambar referensi — cukup **
 Replika setia gambar referensi.
 
 - **Kartu**: `background: var(--card-bg)`, `border-radius: 28px`, padding `clamp(24px, 4vw, 64px)`, `min-height: 92vh`, `position: relative`, `overflow: hidden`.
-- **Nama raksasa**: center, satu baris di desktop.
-  - Kata pertama (`{{FIRST_NAME}}`): class `.text-outline`.
-  - Kata kedua (`{{LAST_NAME}}`): solid `color: var(--ink)`.
-  - Di mobile boleh wrap menjadi 2 baris.
+- **Nama raksasa**: satu SVG responsif (`viewBox` + `width: 100%`), center,
+  satu baris di semua viewport (`role="img"`, `aria-label` nama lengkap).
+  Lihat spec SVG di Section 2.2.
 - **Foto portrait**:
-  - File: `{{PORTRAIT}}` — PNG cutout (background transparan), **grayscale**. Rasio sekitar 3:4.
-  - Lebar: `clamp(240px, 30vw, 400px)`, center horizontal.
-  - Posisi: `margin-top` negatif (sekitar `-8vw`) sehingga **overlap ke teks nama**; `z-index` di atas teks; bagian bawah menempel ke dasar kartu.
-  - Opsional: mask fade ~40px di tepi bawah agar menyatu dengan kartu.
+  - File: `{{PORTRAIT}}` — PNG cutout (background transparan), **grayscale**.
+  - Lebar: `w-full`, `max-w-[400px]`, center horizontal; tinggi mengikuti
+    rasio asli via `aspect-ratio` (tidak ada ruang kosong di dalam figure).
+  - Posisi: `margin-top: max(-5vw, -70px)` sehingga foto **overlap ~8–12%
+    bagian bawah teks**; `z-index` foto (2) di atas teks (1); blok
+    kiri-bawah dan sosmed `z-index` 3 agar tetap di atas foto.
+  - Parallax: teks `y` 0 → 120px, foto `y` 0 → 40px (target elemen `<svg>`
+    pembungkus, bukan teks di dalamnya).
   - Jika foto sumber masih berwarna: tambahkan `filter: grayscale(1)`.
 - **Blok kiri bawah**:
   - Peran: `{{ROLE}}` — 24px, weight 600. Contoh: "UI/UX Designer".

@@ -39,25 +39,38 @@ export function Hero() {
         <motion.div
           data-motion-element
           style={{ y: reduce === false ? nameY : 0 }}
-          className="relative z-0"
+          className="relative z-[1]"
         >
           <motion.div
             {...reveal(0.1)}
             data-motion-element
             className="text-center"
           >
-            <h1 className="text-[clamp(3.5rem,12vw,11rem)] font-black uppercase leading-[0.76] tracking-[-0.055em] sm:whitespace-nowrap">
-              <span className="text-outline">{site.firstName}</span>{" "}
-              <span>{site.lastName}</span>
-            </h1>
+            <svg
+              viewBox="0 0 1400 200"
+              className="hero-name"
+              role="img"
+              aria-label={site.name}
+              style={{ width: "100%", height: "auto", display: "block" }}
+            >
+              <text x="50%" y="150" textAnchor="middle" aria-hidden="true">
+                <tspan className="name-outline">
+                  {site.firstName.toUpperCase()}
+                </tspan>
+                {" "}
+                <tspan className="name-solid">
+                  {site.lastName.toUpperCase()}
+                </tspan>
+              </text>
+            </svg>
           </motion.div>
         </motion.div>
 
-        <div className="relative z-10 mt-10 grid items-end gap-10 md:mt-0 md:grid-cols-[1fr_minmax(280px,400px)_1fr] md:gap-6">
+        <div className="relative z-10 grid items-end gap-10 md:grid-cols-[1fr_minmax(280px,400px)_1fr] md:gap-6">
           <motion.div
             {...reveal(0.26)}
             data-motion-element
-            className="max-w-[320px] md:pb-2"
+            className="relative z-[3] max-w-[320px] md:pb-2"
           >
             <p className="text-[28px] font-semibold leading-tight tracking-[-0.02em]">
               {site.role}
@@ -73,7 +86,7 @@ export function Hero() {
           <motion.figure
             data-motion-element
             style={{ y: reduce === false ? portraitY : 0 }}
-            className="relative order-first mx-auto h-[min(120vw,520px)] w-full max-w-[400px] md:order-none md:mb-[calc(var(--hero-pad)*-1)] md:h-[min(78vh,760px)]"
+            className="hero-photo order-first mx-auto aspect-[1264/1131] w-full max-w-[400px] self-start md:order-none"
           >
             <motion.div
               data-motion-element
@@ -99,7 +112,7 @@ export function Hero() {
             {...reveal(0.34)}
             data-motion-element
             aria-label="Social links"
-            className="relative flex flex-wrap gap-3 md:flex-col md:items-end md:pb-2"
+            className="relative z-[3] flex flex-wrap gap-3 md:flex-col md:items-end md:pb-2"
           >
             <svg
               aria-hidden="true"
