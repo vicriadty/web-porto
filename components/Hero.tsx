@@ -23,8 +23,7 @@ export function Hero() {
   const portraitY = useTransform(scrollYProgress, [0, 1], [0, 40]);
 
   const reveal = (delay: number) => ({
-    initial:
-      reduce === false ? { opacity: 0, y: 24 } : { opacity: 1, y: 0 },
+    initial: reduce === false ? { opacity: 0, y: 24 } : { opacity: 1, y: 0 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6, delay, ease: "easeOut" as const },
   });
@@ -56,8 +55,7 @@ export function Hero() {
               <text x="50%" y="150" textAnchor="middle" aria-hidden="true">
                 <tspan className="name-outline">
                   {site.firstName.toUpperCase()}
-                </tspan>
-                {" "}
+                </tspan>{" "}
                 <tspan className="name-solid">
                   {site.lastName.toUpperCase()}
                 </tspan>
@@ -66,7 +64,7 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="relative z-10 grid items-end gap-10 md:grid-cols-[1fr_minmax(280px,400px)_1fr] md:gap-6">
+        <div className="relative z-10 grid items-end gap-10 md:grid-cols-[1fr_minmax(280px,520px)_1fr] md:gap-6">
           <motion.div
             {...reveal(0.26)}
             data-motion-element
@@ -86,7 +84,7 @@ export function Hero() {
           <motion.figure
             data-motion-element
             style={{ y: reduce === false ? portraitY : 0 }}
-            className="hero-photo order-first mx-auto aspect-[1264/1131] w-full max-w-[400px] self-start md:order-none"
+            className="hero-photo order-first mx-auto aspect-[410/538] w-full max-w-[500px] self-start md:order-none"
           >
             <motion.div
               data-motion-element
@@ -98,11 +96,11 @@ export function Hero() {
               className="relative h-full w-full"
             >
               <Image
-                src="/hero-image.png"
+                src="/hero-image2.png"
                 alt={`Portrait of ${site.name}`}
                 fill
                 priority
-                sizes="(max-width: 767px) 80vw, 400px"
+                sizes="(max-width: 967px) 95vw, 600px"
                 className="object-contain object-bottom grayscale mix-blend-multiply"
               />
             </motion.div>

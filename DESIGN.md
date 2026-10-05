@@ -142,12 +142,15 @@ Replika setia gambar referensi.
   satu baris di semua viewport (`role="img"`, `aria-label` nama lengkap).
   Lihat spec SVG di Section 2.2.
 - **Foto portrait**:
-  - File: `{{PORTRAIT}}` — PNG cutout (background transparan), **grayscale**.
-  - Lebar: `w-full`, `max-w-[400px]`, center horizontal; tinggi mengikuti
+  - File: `{{PORTRAIT}}` — PNG cutout (background transparan), **grayscale**,
+    tanpa headroom transparan (di-crop bila perlu).
+  - Lebar: `w-full`, `max-w-[500px]`, center horizontal; tinggi mengikuti
     rasio asli via `aspect-ratio` (tidak ada ruang kosong di dalam figure).
-  - Posisi: `margin-top: max(-5vw, -70px)` sehingga foto **overlap ~8–12%
-    bagian bawah teks**; `z-index` foto (2) di atas teks (1); blok
-    kiri-bawah dan sosmed `z-index` 3 agar tetap di atas foto.
+  - Posisi: bawah figure sejajar dengan bawah row konten; `margin-top`
+    bertingkat (`-15px`, `-32px` ≥768px, `-60px` ≥1280px) sehingga foto
+    **overlap ~10–15% bagian bawah teks** di semua viewport; `z-index`
+    foto (2) di atas teks (1); blok kiri-bawah dan sosmed `z-index` 3
+    agar tetap di atas foto.
   - Parallax: teks `y` 0 → 120px, foto `y` 0 → 40px (target elemen `<svg>`
     pembungkus, bukan teks di dalamnya).
   - Jika foto sumber masih berwarna: tambahkan `filter: grayscale(1)`.

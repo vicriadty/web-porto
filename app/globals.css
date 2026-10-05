@@ -62,9 +62,22 @@ textarea {
   position: relative;
   z-index: 2;
   /* Pull the portrait (which hugs its image via aspect-ratio) up over the
-     SVG descender padding: ~8-12% cap-height overlap from mobile to
-     ultrawide. The px floor holds the ratio once the text container caps. */
-  margin-top: max(-5vw, -70px);
+     SVG descender padding for a slight (~10-15% cap-height) overlap.
+     Stepped in px because the text container caps at 1400px while vw keeps
+     growing, so no single vw value holds the ratio on all screens. */
+  margin-top: -15px;
+}
+
+@media (min-width: 768px) {
+  .hero-photo {
+    margin-top: -32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-photo {
+    margin-top: -60px;
+  }
 }
 
 .hero-name text {
