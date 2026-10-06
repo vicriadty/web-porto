@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
-import { Inter_Tight } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { SmoothScroll } from "@/components/SmoothScroll";
 
-const interTight = Inter_Tight({
+// Self-hosted variable fonts (no Google Fonts network dependency at build
+// or runtime). Weight is omitted so each file serves its full variable
+// range; only the latin subset is bundled.
+const interTight = localFont({
+  src: "./fonts/InterTight-Variable-latin.woff2",
   variable: "--font-inter-tight",
-  subsets: ["latin"],
+  display: "swap",
+});
+
+const display = localFont({
+  src: "./fonts/Archivo-Variable-latin.woff2",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -23,7 +32,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${interTight.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${interTight.variable} ${display.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <SmoothScroll>
           <a

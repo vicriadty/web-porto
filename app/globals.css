@@ -53,10 +53,52 @@ textarea {
   outline-offset: 3px;
 }
 
-.text-outline {
-  color: transparent;
-  -webkit-text-stroke: 3px var(--ink);
-  paint-order: stroke fill;
+.hero-name {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo {
+  position: relative;
+  z-index: 2;
+  /* Pull the portrait (which hugs its image via aspect-ratio) up over the
+     SVG descender padding for a slight (~10-15% cap-height) overlap.
+     Stepped in px because the text container caps at 1400px while vw keeps
+     growing, so no single vw value holds the ratio on all screens. */
+  margin-top: -15px;
+}
+
+@media (min-width: 768px) {
+  .hero-photo {
+    margin-top: -32px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-photo {
+    margin-top: -60px;
+  }
+}
+
+.hero-name text {
+  font-family: var(--font-display), "Inter Tight", Inter, system-ui,
+    sans-serif;
+  font-weight: 900;
+  font-size: 170px;
+  letter-spacing: -0.02em;
+}
+
+.name-outline {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 3;
+  paint-order: stroke;
+  stroke-linejoin: round;
+}
+
+.name-solid {
+  fill: var(--ink);
+  stroke: none;
 }
 
 .section-shell {
@@ -84,6 +126,8 @@ textarea {
 
 .section-title {
   margin-top: 8px;
+  font-family: var(--font-display), "Inter Tight", Inter, system-ui,
+    sans-serif;
   font-size: clamp(2.5rem, 5vw, 4.75rem);
   font-weight: 800;
   letter-spacing: -0.04em;
@@ -327,10 +371,6 @@ textarea {
 }
 
 @media (max-width: 767px) {
-  .text-outline {
-    -webkit-text-stroke-width: 2px;
-  }
-
   .section-heading {
     align-items: flex-start;
   }
