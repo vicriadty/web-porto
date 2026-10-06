@@ -84,7 +84,7 @@ export function Hero() {
           <motion.figure
             data-motion-element
             style={{ y: reduce === false ? portraitY : 0 }}
-            className="hero-photo order-first mx-auto aspect-[410/538] w-full max-w-[500px] self-start md:order-none"
+            className="hero-photo order-first mx-auto aspect-[1264/1641] w-full max-w-[510px] self-start md:order-none"
           >
             <motion.div
               data-motion-element
@@ -96,7 +96,7 @@ export function Hero() {
               className="relative h-full w-full"
             >
               <Image
-                src="/hero-image2.png"
+                src="/hero-pic.png"
                 alt={`Portrait of ${site.name}`}
                 fill
                 priority
